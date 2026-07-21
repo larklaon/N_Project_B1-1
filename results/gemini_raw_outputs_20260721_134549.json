@@ -1,0 +1,279 @@
+{
+  "run_id": "20260721_134549",
+  "run_started_at": "2026-07-21T13:45:49",
+  "model": "gemini-3.1-pro-preview",
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent",
+  "generation_config": {
+    "temperature": 0.2,
+    "topP": 0.9,
+    "maxOutputTokens": 65536
+  },
+  "cases": [
+    {
+      "id": "case_1_basic_summary",
+      "title": "기본 회의록 요약",
+      "prompt": "[업무 과업]\n다음 회의 메모를 사내 공유용 회의록으로 정리해줘.\n\n[출력 형식]\n1. 회의 제목\n2. 3줄 요약\n3. 결정사항\n4. Action Items 표: 담당 역할 / 작업 / 기한 / 근거\n5. 리스크 및 확인 필요\n6. 다음 회의 아젠다\n7. 핵심 근거 3개\n\n[규칙]\n- 참석자 실명은 쓰지 말고 역할명만 써.\n- 확실하지 않은 내용은 추측하지 말고 \"확인 필요\"로 표시해.\n- 한국어 사내 공유용 톤으로 간결하게 작성해.\n\n[회의 메모]\n7월 7일 B1-1 프로젝트 주간 회의. 참석자는 PM, 백엔드 담당, 프론트엔드 담당, QA 담당, 운영 담당.\n이번 주 목표는 베타 배포 범위 확정과 QA 일정 조율이다.\nPM은 \"이번 베타에서는 회원가입, 로그인, 회의록 요약, 결과 다운로드까지만 포함하자\"고 말했다.\n프론트엔드 담당은 결과 다운로드 화면이 아직 70% 정도라고 설명했다.\n백엔드 담당은 요약 API 응답 시간이 평균 4.8초이며 목표인 3초보다 느리다고 말했다.\nQA 담당은 테스트 케이스 42개 중 31개를 작성했고, 나머지는 정책 문구가 확정되면 작성 가능하다고 했다.\n운영 담당은 개인정보 처리 문구가 법무 검토 중이라 이번 주 금요일 전에는 확정이 어렵다고 말했다.\n베타 배포일은 7월 18일로 가정하고 있으나, 개인정보 문구 확정이 늦어지면 7월 22일로 밀릴 수 있다.\n결론적으로 베타 범위는 축소안으로 진행하고, 다운로드 화면과 API 응답 속도 개선을 우선 처리하기로 했다.\n다음 회의에서는 법무 검토 결과, QA 잔여 케이스, 응답 속도 개선 결과를 확인한다."
+    },
+    {
+      "id": "case_2_ambiguous_input",
+      "title": "모호한 입력 대응",
+      "prompt": "어제 회의 내용 정리해줘. 다운로드는 좀 늦고, 법무는 아직이라고 했어. 톤은 알아서 해줘.\n\n규칙:\n- 모르면 추측하지 말 것.\n- 필요한 확인 질문은 최대 3개까지만 할 것.\n- 답변 가능한 범위가 있으면 초안도 함께 줄 것."
+    },
+    {
+      "id": "case_3_context_change",
+      "title": "조건 변경 및 문맥 유지",
+      "prompt": "먼저 아래 조건으로 회의록을 작성해.\n- 사내 공유용\n- 실명 금지\n- 역할명만 사용\n- Action Items 표 포함\n\n[회의 메모]\n프론트엔드는 대시보드 필터를 7월 9일까지 수정하기로 했다.\n백엔드는 검색 API 캐시 적용을 검토 중이다. 완료 일정은 정해지지 않았다.\nQA는 회귀 테스트 18개 중 12개를 완료했다.\n\n이제 같은 내용을 임원 보고용으로 바꿔줘.\n- 세부 표는 줄여줘.\n- 실명 금지와 역할명 사용 조건은 유지해.\n- 완료 일정이 없는 항목은 확인 필요로 표시해."
+    },
+    {
+      "id": "case_4_external_redaction",
+      "title": "외부 공유용 민감 정보 제거",
+      "prompt": "아래 회의록을 외부 협력사 공유용으로 바꿔줘.\n\n[기존 회의록]\n- 베타 범위는 회원가입, 로그인, 회의록 요약, 결과 다운로드로 제한한다.\n- API 응답 시간은 평균 4.8초이며 목표 3초보다 느리다.\n- 다운로드 화면은 현재 70%이고 7월 12일까지 완료 예정이다.\n- 법무 검토는 7월 10일 오후 완료 가능성이 있으나 확정은 아니다.\n- QA 테스트 케이스는 42개 중 31개 완료했다.\n\n[규칙]\n- 외부 협력사에게 필요한 일정과 요청사항 중심으로 작성해.\n- 내부 성능 수치와 상세 QA 수치는 빼줘.\n- 확정되지 않은 법무 일정은 확정처럼 쓰지 마."
+    },
+    {
+      "id": "case_5_calculation_fact_check",
+      "title": "계산 및 사실 검증",
+      "prompt": "아래 메모에서 계산 가능한 항목만 계산하고, 확정할 수 없는 항목은 확인 필요로 표시해.\n\n[메모]\n- QA 테스트 케이스는 42개 중 31개 작성 완료.\n- API 응답 시간은 평균 4.8초, 목표는 3초.\n- 다운로드 화면은 70% 완료.\n- 베타 배포는 7월 18일을 가정하지만, 법무 검토가 늦으면 7월 22일로 변경 가능.\n\n[출력]\n1. 계산 결과\n2. 확정 불가 항목\n3. 근거"
+    },
+    {
+      "id": "case_6_hallucination_policy",
+      "title": "환각 방지",
+      "prompt": "B1-1 프로젝트의 출장비 정산 예외 조건은 뭐야?\n\n규칙:\n- 제공된 자료가 없으면 확답하지 마.\n- 모르면 확인 필요라고 말하고, 어디서 확인해야 하는지 제안해."
+    }
+  ],
+  "outputs": [
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "case_1_basic_summary",
+      "case_title": "기본 회의록 요약",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "**1. 회의 제목**\nB1-1 프로젝트 주간 회의 (7월 7일)\n\n**2. 3줄 요약**\n- 베타 배포 범위를 핵심 기능(회원가입, 로그인, 회의록 요약, 결과 다운로드)으로 축소 확정함.\n- 프론트엔드 다운로드 화면 개발 및 백엔드 요약 API 응답 속도 개선을 최우선으로 진행함.\n- 개인정보 처리 문구 법무 검토 지연 시, 베타 배포일이 7월 18일에서 7월 22일로 연기될 수 있음.\n\n**3. 결정사항**\n- **베타 배포 범위 확정:** 회원가입, 로그인, 회의록 요약, 결과 다운로드\n- **우선 처리 업무:** 결과 다운로드 화면 개발 마무리 및 요약 API 응답 속도 개선\n\n**4. Action Items 표**\n\n| 담당 역할 | 작업 | 기한 | 근거 |\n| :--- | :--- | :--- | :--- |\n| 프론트엔드 담당 | 결과 다운로드 화면 개발 완료 | 확인 필요 | 현재 70% 완료 상태로 우선 처리 결정됨 |\n| 백엔드 담당 | 요약 API 응답 속도 개선 (목표 3초) | 확인 필요 | 현재 평균 4.8초로 목표치 미달, 우선 처리 결정됨 |\n| 운영 담당 | 개인정보 처리 문구 법무 검토 및 확정 | 이번 주 금요일 이후 (정확한 기한 확인 필요) | QA 잔여 케이스 작성 및 배포 일정에 직결됨 |\n| QA 담당 | 잔여 테스트 케이스 11개 작성 | 정책 문구 확정 후 (확인 필요) | 총 42개 중 31개 완료, 나머지는 문구 확정 후 작성 가능 |\n\n**5. 리스크 및 확인 필요**\n- **일정 리스크:** 개인정보 처리 문구 법무 검토 지연 시, 베타 배포일이 7월 18일에서 7월 22일로 밀릴 수 있음.\n- **확인 필요:** 프론트엔드 화면 개발 완료일, 백엔드 API 개선 완료일, 법무 검토 최종 완료일.\n\n**6. 다음 회의 아젠다**\n- 개인정보 처리 문구 법무 검토 결과 확인\n- QA 잔여 테스트 케이스 작성 현황 점검\n- 요약 API 응답 속도 개선 결과 확인\n\n**7. 핵심 근거 3개**\n- **베타 범위 축소 근거:** 선택과 집중을 통해 핵심 기능(가입, 로그인, 요약, 다운로드) 위주로 베타 버전을 구성하기 위함.\n- **API 개선 우선순위 근거:** 현재 요약 API 응답 시간이 평균 4.8초로, 목표치인 3초보다 느려 사용성 개선이 필요함.\n- **배포 연기 가능성 근거:** QA 잔여 케이스(11개) 작성을 위해 정책 문구 확정이 필수적이나, 현재 법무 검토로 인해 지연되고 있음.",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 532,
+          "candidatesTokenCount": 685,
+          "totalTokenCount": 2540,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 532
+            }
+          ],
+          "thoughtsTokenCount": 1323,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "fvleauOWB5yj2roPhqqZWA",
+        "elapsed_seconds_client": 19.24
+      },
+      "text": "**1. 회의 제목**\nB1-1 프로젝트 주간 회의 (7월 7일)\n\n**2. 3줄 요약**\n- 베타 배포 범위를 핵심 기능(회원가입, 로그인, 회의록 요약, 결과 다운로드)으로 축소 확정함.\n- 프론트엔드 다운로드 화면 개발 및 백엔드 요약 API 응답 속도 개선을 최우선으로 진행함.\n- 개인정보 처리 문구 법무 검토 지연 시, 베타 배포일이 7월 18일에서 7월 22일로 연기될 수 있음.\n\n**3. 결정사항**\n- **베타 배포 범위 확정:** 회원가입, 로그인, 회의록 요약, 결과 다운로드\n- **우선 처리 업무:** 결과 다운로드 화면 개발 마무리 및 요약 API 응답 속도 개선\n\n**4. Action Items 표**\n\n| 담당 역할 | 작업 | 기한 | 근거 |\n| :--- | :--- | :--- | :--- |\n| 프론트엔드 담당 | 결과 다운로드 화면 개발 완료 | 확인 필요 | 현재 70% 완료 상태로 우선 처리 결정됨 |\n| 백엔드 담당 | 요약 API 응답 속도 개선 (목표 3초) | 확인 필요 | 현재 평균 4.8초로 목표치 미달, 우선 처리 결정됨 |\n| 운영 담당 | 개인정보 처리 문구 법무 검토 및 확정 | 이번 주 금요일 이후 (정확한 기한 확인 필요) | QA 잔여 케이스 작성 및 배포 일정에 직결됨 |\n| QA 담당 | 잔여 테스트 케이스 11개 작성 | 정책 문구 확정 후 (확인 필요) | 총 42개 중 31개 완료, 나머지는 문구 확정 후 작성 가능 |\n\n**5. 리스크 및 확인 필요**\n- **일정 리스크:** 개인정보 처리 문구 법무 검토 지연 시, 베타 배포일이 7월 18일에서 7월 22일로 밀릴 수 있음.\n- **확인 필요:** 프론트엔드 화면 개발 완료일, 백엔드 API 개선 완료일, 법무 검토 최종 완료일.\n\n**6. 다음 회의 아젠다**\n- 개인정보 처리 문구 법무 검토 결과 확인\n- QA 잔여 테스트 케이스 작성 현황 점검\n- 요약 API 응답 속도 개선 결과 확인\n\n**7. 핵심 근거 3개**\n- **베타 범위 축소 근거:** 선택과 집중을 통해 핵심 기능(가입, 로그인, 요약, 다운로드) 위주로 베타 버전을 구성하기 위함.\n- **API 개선 우선순위 근거:** 현재 요약 API 응답 시간이 평균 4.8초로, 목표치인 3초보다 느려 사용성 개선이 필요함.\n- **배포 연기 가능성 근거:** QA 잔여 케이스(11개) 작성을 위해 정책 문구 확정이 필수적이나, 현재 법무 검토로 인해 지연되고 있음."
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "case_2_ambiguous_input",
+      "case_title": "모호한 입력 대응",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "프로젝트 매니저 관점에서 현재 공유해주신 내용만으로 작성한 회의록 초안과, 더 완벽한 정리를 위해 필요한 질문 3가지를 전달해 드립니다.\n\n---\n\n### 📝 회의록 초안\n\n**[회의 개요]**\n*   **일자:** 어제 (정확한 날짜 [확인 필요])\n*   **회의명:** [확인 필요]\n*   **참석자:** [확인 필요]\n\n**[주요 논의 및 진행 상황]**\n1.  **다운로드 관련 업무**\n    *   현재 진행 상황: 일정 지연 중\n    *   상세 내용 및 변경된 목표 일정: [확인 필요]\n2.  **법무 검토 업무**\n    *   현재 진행 상황: 미완료 (진행 중)\n    *   검토 안건 및 예상 완료 일정: [확인 필요]\n\n**[Action Items (Next Steps)]**\n*   **다운로드 담당자:** 지연 사유 파악 및 새로운 완료 일정 공유 [확인 필요]\n*   **법무 담당자:** 법무 검토 진행 상황 및 피드백 예정일 확인 [확인 필요]\n\n---\n\n### 💡 PM 코치의 확인 질문 (최대 3개)\n이 회의록을 실무에서 바로 쓸 수 있는 수준으로 끌어올리려면 아래 내용이 필요합니다.\n\n1.  **'다운로드'와 '법무'의 구체적인 작업명(또는 안건)은 무엇인가요?**\n2.  **각 업무의 담당자(역할명)와 예상 완료(또는 목표) 일정은 언제인가요?**\n3.  **이 회의의 이름(프로젝트명)과 참석자(역할명)는 누구였나요?**\n\n답변해 주시면 빈칸([확인 필요])을 채워 최종본을 완성해 드리겠습니다.",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 156,
+          "candidatesTokenCount": 422,
+          "totalTokenCount": 1450,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 156
+            }
+          ],
+          "thoughtsTokenCount": 872,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "kPleara9HJyj2roPhqqZWA",
+        "elapsed_seconds_client": 12.49
+      },
+      "text": "프로젝트 매니저 관점에서 현재 공유해주신 내용만으로 작성한 회의록 초안과, 더 완벽한 정리를 위해 필요한 질문 3가지를 전달해 드립니다.\n\n---\n\n### 📝 회의록 초안\n\n**[회의 개요]**\n*   **일자:** 어제 (정확한 날짜 [확인 필요])\n*   **회의명:** [확인 필요]\n*   **참석자:** [확인 필요]\n\n**[주요 논의 및 진행 상황]**\n1.  **다운로드 관련 업무**\n    *   현재 진행 상황: 일정 지연 중\n    *   상세 내용 및 변경된 목표 일정: [확인 필요]\n2.  **법무 검토 업무**\n    *   현재 진행 상황: 미완료 (진행 중)\n    *   검토 안건 및 예상 완료 일정: [확인 필요]\n\n**[Action Items (Next Steps)]**\n*   **다운로드 담당자:** 지연 사유 파악 및 새로운 완료 일정 공유 [확인 필요]\n*   **법무 담당자:** 법무 검토 진행 상황 및 피드백 예정일 확인 [확인 필요]\n\n---\n\n### 💡 PM 코치의 확인 질문 (최대 3개)\n이 회의록을 실무에서 바로 쓸 수 있는 수준으로 끌어올리려면 아래 내용이 필요합니다.\n\n1.  **'다운로드'와 '법무'의 구체적인 작업명(또는 안건)은 무엇인가요?**\n2.  **각 업무의 담당자(역할명)와 예상 완료(또는 목표) 일정은 언제인가요?**\n3.  **이 회의의 이름(프로젝트명)과 참석자(역할명)는 누구였나요?**\n\n답변해 주시면 빈칸([확인 필요])을 채워 최종본을 완성해 드리겠습니다."
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "case_3_context_change",
+      "case_title": "조건 변경 및 문맥 유지",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "**[사내 공유용 회의록]**\n\n**1. 주요 진행 상황**\n* **QA:** 회귀 테스트 18개 중 12개 완료\n\n**2. Action Items**\n| 담당 | 업무 내용 | 기한 |\n| :--- | :--- | :--- |\n| 프론트엔드 | 대시보드 필터 수정 | 7월 9일 |\n| 백엔드 | 검색 API 캐시 적용 검토 | 미정 |\n\n---\n\n**[임원 보고용 회의록]**\n\n**1. 프로젝트 현황**\n* **QA:** 회귀 테스트 진행 중 (12/18 완료)\n* **프론트엔드:** 대시보드 필터 수정 (완료 예정: 7월 9일)\n\n**2. 주요 이슈 및 확인 사항**\n* **백엔드:** 검색 API 캐시 적용 검토 중 (완료 일정: **확인 필요**)",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 235,
+          "candidatesTokenCount": 208,
+          "totalTokenCount": 1595,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 235
+            }
+          ],
+          "thoughtsTokenCount": 1152,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "nPleaq-jO4zJ0-kPu6buyQo",
+        "elapsed_seconds_client": 12.9
+      },
+      "text": "**[사내 공유용 회의록]**\n\n**1. 주요 진행 상황**\n* **QA:** 회귀 테스트 18개 중 12개 완료\n\n**2. Action Items**\n| 담당 | 업무 내용 | 기한 |\n| :--- | :--- | :--- |\n| 프론트엔드 | 대시보드 필터 수정 | 7월 9일 |\n| 백엔드 | 검색 API 캐시 적용 검토 | 미정 |\n\n---\n\n**[임원 보고용 회의록]**\n\n**1. 프로젝트 현황**\n* **QA:** 회귀 테스트 진행 중 (12/18 완료)\n* **프론트엔드:** 대시보드 필터 수정 (완료 예정: 7월 9일)\n\n**2. 주요 이슈 및 확인 사항**\n* **백엔드:** 검색 API 캐시 적용 검토 중 (완료 일정: **확인 필요**)"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "case_4_external_redaction",
+      "case_title": "외부 공유용 민감 정보 제거",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "**[외부 협력사 공유용 회의록]**\n\n**1. 베타 서비스 범위**\n- 회원가입, 로그인, 회의록 요약, 결과 다운로드\n\n**2. 주요 진행 일정**\n- 다운로드 화면 개발: 7월 12일 완료 예정\n- 법무 검토: 7월 10일 오후 완료 예정 (확인 필요)",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 269,
+          "candidatesTokenCount": 84,
+          "totalTokenCount": 1536,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 269
+            }
+          ],
+          "thoughtsTokenCount": 1183,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "qvleao79KsKHosUP1_ayKA",
+        "elapsed_seconds_client": 12.49
+      },
+      "text": "**[외부 협력사 공유용 회의록]**\n\n**1. 베타 서비스 범위**\n- 회원가입, 로그인, 회의록 요약, 결과 다운로드\n\n**2. 주요 진행 일정**\n- 다운로드 화면 개발: 7월 12일 완료 예정\n- 법무 검토: 7월 10일 오후 완료 예정 (확인 필요)"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "case_5_calculation_fact_check",
+      "case_title": "계산 및 사실 검증",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "**1. 계산 결과**\n*   **QA 테스트 케이스 잔여 건수:** 11개 (42개 - 31개)\n*   **API 응답 시간 단축 필요량:** 1.8초 (현재 4.8초 - 목표 3초)\n*   **다운로드 화면 잔여 진척도:** 30% (전체 100% - 완료 70%)\n\n**2. 확정 불가 항목**\n*   **베타 배포일:** 확인 필요 (7월 18일 또는 7월 22일)\n\n**3. 근거**\n*   **계산 항목:** 원문에 명시된 전체 수치와 현재 수치/목표치를 단순 차감하여 잔여량을 산출함.\n*   **확정 불가 항목:** 베타 배포일은 '법무 검토 지연 여부'라는 조건에 따라 변동 가능성이 명시되어 있어 현재 시점에서 특정 날짜로 확정할 수 없음.",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 217,
+          "candidatesTokenCount": 222,
+          "totalTokenCount": 1419,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 217
+            }
+          ],
+          "thoughtsTokenCount": 980,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "tvleatWDLauj0-kPiaz0kQw",
+        "elapsed_seconds_client": 10.96
+      },
+      "text": "**1. 계산 결과**\n*   **QA 테스트 케이스 잔여 건수:** 11개 (42개 - 31개)\n*   **API 응답 시간 단축 필요량:** 1.8초 (현재 4.8초 - 목표 3초)\n*   **다운로드 화면 잔여 진척도:** 30% (전체 100% - 완료 70%)\n\n**2. 확정 불가 항목**\n*   **베타 배포일:** 확인 필요 (7월 18일 또는 7월 22일)\n\n**3. 근거**\n*   **계산 항목:** 원문에 명시된 전체 수치와 현재 수치/목표치를 단순 차감하여 잔여량을 산출함.\n*   **확정 불가 항목:** 베타 배포일은 '법무 검토 지연 여부'라는 조건에 따라 변동 가능성이 명시되어 있어 현재 시점에서 특정 날짜로 확정할 수 없음."
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "case_6_hallucination_policy",
+      "case_title": "환각 방지",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "제공된 자료가 없어 B1-1 프로젝트의 출장비 정산 예외 조건을 알 수 없습니다.\n\n**[확인 필요]**\n* **확인 제안처:** B1-1 프로젝트 예산 기안 문서, 사내 재무/회계 규정 가이드, 또는 재무 담당자 및 PM에게 확인하시기 바랍니다.",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 134,
+          "candidatesTokenCount": 77,
+          "totalTokenCount": 744,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 134
+            }
+          ],
+          "thoughtsTokenCount": 533,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "wfleaqafHsr41e8PkpKWgQw",
+        "elapsed_seconds_client": 6.86
+      },
+      "text": "제공된 자료가 없어 B1-1 프로젝트의 출장비 정산 예외 조건을 알 수 없습니다.\n\n**[확인 필요]**\n* **확인 제안처:** B1-1 프로젝트 예산 기안 문서, 사내 재무/회계 규정 가이드, 또는 재무 담당자 및 PM에게 확인하시기 바랍니다."
+    }
+  ]
+}
