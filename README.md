@@ -31,6 +31,7 @@
 | 결과 파일 | 내용 |
 |---|---|
 | [results/model_comparison_summary_20260721.md](results/model_comparison_summary_20260721.md) | 3종 LLM 비교 결과 요약 |
+| [results/annotated_model_outputs_20260721.md](results/annotated_model_outputs_20260721.md) | 프롬프트, 모델 응답, 문제 지점, 평가 메모를 함께 정리한 주석형 로그 |
 | [results/ollama_test_summary_20260721_133956.md](results/ollama_test_summary_20260721_133956.md) | GLM-5.2 / DeepSeek-V4-Pro 비교 요약 |
 | [results/ollama_raw_outputs_20260721_133956.md](results/ollama_raw_outputs_20260721_133956.md) | Ollama API 원문 응답 로그 |
 | [results/gemini_raw_outputs_20260721_134549.md](results/gemini_raw_outputs_20260721_134549.md) | Gemini API 원문 응답 로그 |

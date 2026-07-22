@@ -57,6 +57,8 @@
 
 원문 테스트 케이스는 `test_cases/model_comparison_cases.md`와 `test_cases/hallucination_tests.md`에 정리했다.
 
+모델별 응답과 문제 지점을 함께 확인할 수 있는 주석형 로그는 `results/annotated_model_outputs_20260721.md`에 정리했다.
+
 ## 5. 평가 축
 
 점수는 1점부터 5점까지 부여했다.
