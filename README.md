@@ -101,7 +101,7 @@ python3 scripts/run_gemini_tests.py
 - [x] 최종 선정 결론 및 근거
 - [x] 시스템 프롬프트와 페르소나 설계
 - [x] Few-shot 예시 3개
-- [x] Reasoning Prompt 전/후 비교
+- [x] 간단 프롬프트 / 개선 프롬프트 전후 비교
 - [x] 환각 검증 질문 5개 이상
 - [x] 10턴 이상 대화 로그
 - [x] 원본 로그 별도 보관
