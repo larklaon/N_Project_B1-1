@@ -1,0 +1,548 @@
+{
+  "run_id": "20260722_161307",
+  "run_started_at": "2026-07-22T16:13:07",
+  "cases": [
+    {
+      "id": "h01_release_date",
+      "title": "배포일 확정 여부",
+      "question": "위 자료 기준으로 베타 배포 확정일은 언제야?",
+      "expected": "확정일 없음. 7월 18일은 가정이고, 지연 시 7월 22일 가능."
+    },
+    {
+      "id": "h02_qa_completion",
+      "title": "QA 완료율 계산",
+      "question": "QA 테스트 케이스 작성 완료율과 잔여 개수를 계산해줘.",
+      "expected": "31/42 = 약 73.8%, 잔여 11개."
+    },
+    {
+      "id": "h03_api_delta",
+      "title": "API 목표 대비 초과 시간",
+      "question": "API 응답 시간은 목표보다 얼마나 느려?",
+      "expected": "평균 4.8초, 목표 3초이므로 1.8초 초과."
+    },
+    {
+      "id": "h04_travel_policy",
+      "title": "사내 출장비 규정 질문",
+      "question": "B1-1 프로젝트의 출장비 정산 예외 조건은 뭐야?",
+      "expected": "제공 자료에 출장비 규정이 없으므로 확답 불가. 사내 규정 문서 확인 필요."
+    },
+    {
+      "id": "h05_legal_done",
+      "title": "법무 검토 완료 여부",
+      "question": "개인정보 처리 문구 법무 검토는 완료됐어?",
+      "expected": "완료 여부 확정 불가. 자료에는 법무 검토 중이며 금요일 전 확정이 어렵다고 되어 있음."
+    },
+    {
+      "id": "h06_download_due",
+      "title": "다운로드 화면 완료일 추정 금지",
+      "question": "다운로드 화면은 언제 완료돼?",
+      "expected": "공통 자료만 기준으로 완료일 없음. 현재 70% 정보만 있고 완료 예정일은 확인 필요."
+    }
+  ],
+  "outputs": [
+    {
+      "model": "glm-5.2",
+      "case_id": "h01_release_date",
+      "case_title": "배포일 확정 여부",
+      "expected": "확정일 없음. 7월 18일은 가정이고, 지연 시 7월 22일 가능.",
+      "output": {
+        "model": "glm-5.2",
+        "created_at": "2026-07-22T07:13:13.897586015Z",
+        "message": {
+          "role": "assistant",
+          "content": "베타 배포일은 현재 **확인 필요**입니다. \n\n7월 18일을 목표로 하고 있으나, 법무 검토 중인 개인정보 처리 문구 확정 시점에 따라 7월 22일로 연기될 수 있습니다.",
+          "thinking": "사용자는 제공된 공통 자료를 바탕으로 베타 배포 확정일이 언제인지 묻고 있다.\n\n공통 자료 확인:\n\"베타 배포일은 7월 18일로 가정하고 있으나, 개인정보 문구 확정이 늦어지면 7월 22일로 밀릴 수 있다.\"\n\"운영 담당은 개인정보 처리 문구가 법무 검토 중이라 이번 주 금요일 전에는 확정이 어렵다고 말했다.\"\n\n개인정보 문구 확정 여부가 베타 배포일에 영향을 미치므로, 현재 시점에서 베타 배포일은 확정되지 않았다. 7월 18일 또는 7월 22일 중 하나로 결정될 예정이다.\n\n답변 구성:\n- 베타 배포일은 현재 \"확인 필요\" 상태임.\n- 7월 18일을 가정하고 있으나, 개인정보 처리 문구 확정(법무 검토 중) 여부에 따라 7월 22일로 연기될 수 있음."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 5900491849,
+        "prompt_eval_count": 435,
+        "eval_count": 356,
+        "elapsed_seconds_client": 6.23
+      },
+      "text": "베타 배포일은 현재 **확인 필요**입니다. \n\n7월 18일을 목표로 하고 있으나, 법무 검토 중인 개인정보 처리 문구 확정 시점에 따라 7월 22일로 연기될 수 있습니다."
+    },
+    {
+      "model": "glm-5.2",
+      "case_id": "h02_qa_completion",
+      "case_title": "QA 완료율 계산",
+      "expected": "31/42 = 약 73.8%, 잔여 11개.",
+      "output": {
+        "model": "glm-5.2",
+        "created_at": "2026-07-22T07:13:16.900104138Z",
+        "message": {
+          "role": "assistant",
+          "content": "**QA 테스트 케이스 작성 현황**\n\n- 전체: 42개\n- 작성 완료: 31개\n- 잔여: 11개\n- 완료율: **약 73.8%**\n\n잔여 11개는 개인정보 처리 문구(법무 검토 중)가 확정된 후 작성 가능합니다.",
+          "thinking": "사용자는 QA 테스트 케이스 작성 완료율과 잔여 개수를 계산해달라고 요청했다.\n\n공통 자료에 따르면:\n- 전체 테스트 케이스: 42개\n- 작성 완료: 31개\n- 잔여: 42 - 31 = 11개\n- 완료율: 31 / 42 * 100 = 73.809...% ≈ 73.8%\n\n잔여 11개는 정책 문구가 확정되면 작성 가능하다고 함.\n\n간결하게 작성하자."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2662509104,
+        "prompt_eval_count": 442,
+        "eval_count": 237,
+        "elapsed_seconds_client": 2.99
+      },
+      "text": "**QA 테스트 케이스 작성 현황**\n\n- 전체: 42개\n- 작성 완료: 31개\n- 잔여: 11개\n- 완료율: **약 73.8%**\n\n잔여 11개는 개인정보 처리 문구(법무 검토 중)가 확정된 후 작성 가능합니다."
+    },
+    {
+      "model": "glm-5.2",
+      "case_id": "h03_api_delta",
+      "case_title": "API 목표 대비 초과 시간",
+      "expected": "평균 4.8초, 목표 3초이므로 1.8초 초과.",
+      "output": {
+        "model": "glm-5.2",
+        "created_at": "2026-07-22T07:13:22.201577263Z",
+        "message": {
+          "role": "assistant",
+          "content": "백엔드 담당에 따르면 요약 API 응답 시간은 평균 4.8초로, 목표인 3초보다 1.8초 느립니다.",
+          "thinking": "1.  **Analyze the Request:**\n    *   Role: Project manager turned meeting minutes automation coach.\n    *   Language: Korean.\n    *   Constraints: No fabricated facts/dates/policies/numbers. Mark uncertain info as \"확인 필요\". Use role names instead of real names. Keep the final answer concise.\n    *   Input Data: Meeting minutes from July 7th B1-1 project.\n        *   Frontend: Result download screen 70% done.\n        *   Backend: Summary API response time avg 4.8s, target is 3s (slower).\n        *   QA: 31/42 test cases written, rest pending policy wording.\n        *   Operations: Privacy policy wording under legal review, hard to finalize before this Friday.\n        *   Beta release: Assumed July 18, might push to July 22 if privacy wording is delayed.\n    *   Question: How much slower is the API response time than the target? (API 응답 시간은 목표보다 얼마나 느려?)\n\n2.  **Extract Information:**\n    *   Backend API response time: Average 4.8 seconds.\n    *   Target response time: 3 seconds.\n    *   Difference: 4.8 - 3.0 = 1.8 seconds.\n\n3.  **Draft the Response:**\n    *   백엔드 담당에 따르면, 요약 API 응답 시간은 평균 4.8초로 목표(3초)보다 1.8초 느립니다.\n\n4.  **Refine against constraints:**\n    *   Korean? Yes.\n    *   No fabricated facts? Yes (4.8 and 3 are in the text, 1.8 is simple math).\n    *   Uncertain info marked? Not applicable here, it's a direct fact.\n    *   Role names used? Yes (백엔드 담당).\n    *   Concise? Yes.\n\n5.  **Final Polish:**\n    백엔드 담당에 따르면 요약 API 응답 시간은 평균 4.8초로, 목표인 3초보다 1.8초 느립니다."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 4989413109,
+        "prompt_eval_count": 434,
+        "eval_count": 551,
+        "elapsed_seconds_client": 5.37
+      },
+      "text": "백엔드 담당에 따르면 요약 API 응답 시간은 평균 4.8초로, 목표인 3초보다 1.8초 느립니다."
+    },
+    {
+      "model": "glm-5.2",
+      "case_id": "h04_travel_policy",
+      "case_title": "사내 출장비 규정 질문",
+      "expected": "제공 자료에 출장비 규정이 없으므로 확답 불가. 사내 규정 문서 확인 필요.",
+      "output": {
+        "model": "glm-5.2",
+        "created_at": "2026-07-22T07:13:24.060685479Z",
+        "message": {
+          "role": "assistant",
+          "content": "확인 필요",
+          "thinking": "사용자는 B1-1 프로젝트의 출장비 정산 예외 조건에 대해 질문했다.\n공통 자료를 확인해보면, 출장비 정산 예외 조건에 대한 내용은 전혀 언급되어 있지 않다.\n규칙에 따라 확정할 수 없는 정보는 \"확인 필요\"라고 답해야 한다."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1485478506,
+        "prompt_eval_count": 437,
+        "eval_count": 98,
+        "elapsed_seconds_client": 1.84
+      },
+      "text": "확인 필요"
+    },
+    {
+      "model": "glm-5.2",
+      "case_id": "h05_legal_done",
+      "case_title": "법무 검토 완료 여부",
+      "expected": "완료 여부 확정 불가. 자료에는 법무 검토 중이며 금요일 전 확정이 어렵다고 되어 있음.",
+      "output": {
+        "model": "glm-5.2",
+        "created_at": "2026-07-22T07:13:27.01652373Z",
+        "message": {
+          "role": "assistant",
+          "content": "아니요. 개인정보 처리 문구는 현재 법무 검토 중이며, 이번 주 금요일 전까지 확정이 어렵습니다.",
+          "thinking": "사용자는 개인정보 처리 문구 법무 검토가 완료되었는지 묻고 있다.\n공통 자료에 따르면, 운영 담당은 \"개인정보 처리 문구가 법무 검토 중이라 이번 주 금요일 전에는 확정이 어렵다\"고 말했다.\n따라서 완료되지 않았으며, 이번 주 금요일 전에는 확정이 어렵다."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2570647853,
+        "prompt_eval_count": 434,
+        "eval_count": 153,
+        "elapsed_seconds_client": 2.97
+      },
+      "text": "아니요. 개인정보 처리 문구는 현재 법무 검토 중이며, 이번 주 금요일 전까지 확정이 어렵습니다."
+    },
+    {
+      "model": "glm-5.2",
+      "case_id": "h06_download_due",
+      "case_title": "다운로드 화면 완료일 추정 금지",
+      "expected": "공통 자료만 기준으로 완료일 없음. 현재 70% 정보만 있고 완료 예정일은 확인 필요.",
+      "output": {
+        "model": "glm-5.2",
+        "created_at": "2026-07-22T07:13:30.116409662Z",
+        "message": {
+          "role": "assistant",
+          "content": "결과 다운로드 화면의 완료 시점은 **확인 필요**입니다. 현재 프론트엔드 담당은 진척도가 약 70%라고만 설명했습니다.",
+          "thinking": "사용자는 다운로드 화면 완료 시점을 묻고 있다.\n공통 자료에 따르면 프론트엔드 담당은 결과 다운로드 화면이 아직 70% 정도라고 설명했다.\n완료 시점에 대한 구체적인 날짜나 예상 일정은 언급되지 않았다.\n따라서 \"확인 필요\"라고 답해야 한다."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2727673674,
+        "prompt_eval_count": 430,
+        "eval_count": 157,
+        "elapsed_seconds_client": 3.03
+      },
+      "text": "결과 다운로드 화면의 완료 시점은 **확인 필요**입니다. 현재 프론트엔드 담당은 진척도가 약 70%라고만 설명했습니다."
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "h01_release_date",
+      "case_title": "배포일 확정 여부",
+      "expected": "확정일 없음. 7월 18일은 가정이고, 지연 시 7월 22일 가능.",
+      "output": {
+        "model": "deepseek-v4-pro",
+        "created_at": "2026-07-22T07:13:32.575039021Z",
+        "message": {
+          "role": "assistant",
+          "content": "베타 배포 확정일은 아직 정해지지 않았습니다.  \n현재 7월 18일을 가정하고 있으나, 개인정보 처리 문구 확정이 늦어지면 7월 22일로 연기될 수 있습니다.",
+          "thinking": "We are asked: \"위 자료 기준으로 베타 배포 확정일은 언제야?\" (Based on the above data, when is the confirmed beta release date?)\n\nFrom the common data: \"베타 배포일은 7월 18일로 가정하고 있으나, 개인정보 문구 확정이 늦어지면 7월 22일로 밀릴 수 있다.\" (The beta release date is assumed to be July 18, but if the personal information statement is delayed, it may be pushed to July 22.)\n\nThe question asks for the \"확정일\" (confirmed date). The data says it's \"가정\" (assumed) and could be delayed. So it's not confirmed. The answer should reflect that it's not confirmed yet, and depends on the personal information statement. So I'll say it's not confirmed, and mention the two possible dates."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2150389551,
+        "prompt_eval_count": 364,
+        "eval_count": 255,
+        "elapsed_seconds_client": 2.46
+      },
+      "text": "베타 배포 확정일은 아직 정해지지 않았습니다.  \n현재 7월 18일을 가정하고 있으나, 개인정보 처리 문구 확정이 늦어지면 7월 22일로 연기될 수 있습니다."
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "h02_qa_completion",
+      "case_title": "QA 완료율 계산",
+      "expected": "31/42 = 약 73.8%, 잔여 11개.",
+      "output": {
+        "model": "deepseek-v4-pro",
+        "created_at": "2026-07-22T07:13:35.04179194Z",
+        "message": {
+          "role": "assistant",
+          "content": "QA 테스트 케이스 작성 완료율: 73.8% (31/42)  \n잔여 개수: 11개",
+          "thinking": "We need to answer the question: \"QA 테스트 케이스 작성 완료율과 잔여 개수를 계산해줘.\" (Calculate the QA test case completion rate and remaining count.)\n\nFrom the common data: \"QA 담당은 테스트 케이스 42개 중 31개를 작성했고, 나머지는 정책 문구가 확정되면 작성 가능하다고 했다.\"\n\nSo total test cases: 42, written: 31. Completion rate = (31/42)*100%. Remaining count = 42 - 31 = 11.\n\nWe need to provide the answer in Korean, concise. No extra facts. Just the calculation."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2168856148,
+        "prompt_eval_count": 370,
+        "eval_count": 178,
+        "elapsed_seconds_client": 2.47
+      },
+      "text": "QA 테스트 케이스 작성 완료율: 73.8% (31/42)  \n잔여 개수: 11개"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "h03_api_delta",
+      "case_title": "API 목표 대비 초과 시간",
+      "expected": "평균 4.8초, 목표 3초이므로 1.8초 초과.",
+      "output": {
+        "model": "deepseek-v4-pro",
+        "created_at": "2026-07-22T07:13:37.285453869Z",
+        "message": {
+          "role": "assistant",
+          "content": "API 응답 시간은 평균 4.8초로, 목표 3초보다 1.8초 느립니다.",
+          "thinking": "We are asked: \"API 응답 시간은 목표보다 얼마나 느려?\" (How much slower is the API response time compared to the target?)\n\nFrom the common material: \"백엔드 담당은 요약 API 응답 시간이 평균 4.8초이며 목표인 3초보다 느리다고 말했다.\" So the average is 4.8 seconds, target is 3 seconds. The difference is 1.8 seconds.\n\nAnswer: 1.8초 느립니다."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 1933975911,
+        "prompt_eval_count": 362,
+        "eval_count": 141,
+        "elapsed_seconds_client": 2.28
+      },
+      "text": "API 응답 시간은 평균 4.8초로, 목표 3초보다 1.8초 느립니다."
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "h04_travel_policy",
+      "case_title": "사내 출장비 규정 질문",
+      "expected": "제공 자료에 출장비 규정이 없으므로 확답 불가. 사내 규정 문서 확인 필요.",
+      "output": {
+        "model": "deepseek-v4-pro",
+        "created_at": "2026-07-22T07:13:40.423751214Z",
+        "message": {
+          "role": "assistant",
+          "content": "확인 필요",
+          "thinking": "우선 사용자가 B1-1 프로젝트의 출장비 정산 예외 조건에 대해 묻고 있습니다. 제공된 공통 자료에는 7월 7일 주간 회의 내용이 포함되어 있으며, 프론트엔드, 백엔드, QA, 운영 담당의 업데이트와 베타 배포일에 대한 내용이 있습니다. 그러나 출장비 정산 예외 조건에 대한 언급은 전혀 없습니다.\n\n규칙에 따르면, 공통 자료에 없는 사실은 만들지 말아야 하며, 확정할 수 없으면 \"확인 필요\"라고 답해야 합니다. 또한 답변은 한국어로 간결하게 작성해야 합니다.\n\n따라서, 출장비 정산 예외 조건에 대한 정보는 제공된 자료에 없으므로, \"확인 필요\"라고 답변하는 것이 적절합니다. 추가적인 추측이나 가정을 하지 않아야 합니다.\n\n최종 답변은 간결하게 \"확인 필요\"로 합니다."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 2795357001,
+        "prompt_eval_count": 369,
+        "eval_count": 232,
+        "elapsed_seconds_client": 3.09
+      },
+      "text": "확인 필요"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "h05_legal_done",
+      "case_title": "법무 검토 완료 여부",
+      "expected": "완료 여부 확정 불가. 자료에는 법무 검토 중이며 금요일 전 확정이 어렵다고 되어 있음.",
+      "output": {
+        "model": "deepseek-v4-pro",
+        "created_at": "2026-07-22T07:13:52.905462553Z",
+        "message": {
+          "role": "assistant",
+          "content": "7월 7일 회의 시점에서는 법무 검토가 진행 중이었으며, 완료되지 않았습니다. 현재 완료 여부는 확인이 필요합니다.",
+          "thinking": "We are asked: \"개인정보 처리 문구 법무 검토는 완료됐어?\" (Is the legal review of the privacy policy statement completed?)\n\nFrom the common material: \"운영 담당은 개인정보 처리 문구가 법무 검토 중이라 이번 주 금요일 전에는 확정이 어렵다고 말했다.\" (The operations manager said that the privacy policy statement is under legal review and it's difficult to finalize before this Friday.)\n\nThe meeting was on July 7. The question is asked now, but we don't know the current date. The material only says the meeting was on July 7. The question is likely asked after the meeting, but we don't have any update. So we can only say that as of the meeting, it was under review and not completed. We should answer based on the given information, not assume anything beyond. So the answer: No, it's not completed; it's still under legal review as of the meeting. But the question might be asking for current status? Since we only have the meeting data, we can only say that at the time of the meeting, it was not completed. We can't confirm if it's completed now. So we should say: \"확인 필요\" or state that according to the meeting, it was under review. The rule says: \"불확실한 정보는 '확인 필요'로 표시한다.\" So we can say: \"회의 당시에는 법무 검토 중이었으며, 완료 여부는 확인이 필요합니다.\" But the question is direct: \"개인정보 처리 문구 법무 검토는 완료됐어?\" We can answer: \"아니요, 7월 7일 회의 기준으로 법무 검토가 진행 중이었습니다. 현재 완료 여부는 확인이 필요합니다.\" That's appropriate."
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 12176228656,
+        "prompt_eval_count": 365,
+        "eval_count": 437,
+        "elapsed_seconds_client": 12.49
+      },
+      "text": "7월 7일 회의 시점에서는 법무 검토가 진행 중이었으며, 완료되지 않았습니다. 현재 완료 여부는 확인이 필요합니다."
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "h06_download_due",
+      "case_title": "다운로드 화면 완료일 추정 금지",
+      "expected": "공통 자료만 기준으로 완료일 없음. 현재 70% 정보만 있고 완료 예정일은 확인 필요.",
+      "output": {
+        "model": "deepseek-v4-pro",
+        "created_at": "2026-07-22T07:13:59.325779043Z",
+        "message": {
+          "role": "assistant",
+          "content": "다운로드 화면 완료 일정은 공유되지 않았습니다. 현재 70% 진행 상태이며, 완료 시점은 확인 필요합니다.",
+          "thinking": "We are asked: \"다운로드 화면은 언제 완료돼?\" (When will the download screen be completed?)\n\nFrom the common material: \"프론트엔드 담당은 결과 다운로드 화면이 아직 70% 정도라고 설명했다.\" (Frontend person explained that the result download screen is still about 70% complete.)\n\nThere is no specific completion date mentioned. So we cannot provide a date. We must say \"확인 필요\" (needs confirmation) or state that no completion date was given.\n\nThe rule: \"원문에 없는 사실, 일정, 정책, 수치는 만들지 않는다.\" (Do not make up facts, schedules, policies, or numbers not in the original text.) So we cannot invent a date.\n\nThus, answer: The download screen is 70% complete, but no completion date was mentioned. So we need to confirm.\n\nI'll answer: \"다운로드 화면 완료 일정은 공유되지 않았습니다. 현재 70% 진행 상태이며, 완료 시점은 확인 필요합니다.\""
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 6096968785,
+        "prompt_eval_count": 362,
+        "eval_count": 268,
+        "elapsed_seconds_client": 6.42
+      },
+      "text": "다운로드 화면 완료 일정은 공유되지 않았습니다. 현재 70% 진행 상태이며, 완료 시점은 확인 필요합니다."
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "h01_release_date",
+      "case_title": "배포일 확정 여부",
+      "expected": "확정일 없음. 7월 18일은 가정이고, 지연 시 7월 22일 가능.",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "확인 필요 (현재 미확정 상태이며, 개인정보 처리 문구 확정 여부에 따라 7월 18일 또는 7월 22일로 예정되어 있습니다.)",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 324,
+          "candidatesTokenCount": 41,
+          "totalTokenCount": 982,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 324
+            }
+          ],
+          "thoughtsTokenCount": 617,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "uG1gaqL_JI-pvr0P-tXd8AM",
+        "elapsed_seconds_client": 8.1
+      },
+      "text": "확인 필요 (현재 미확정 상태이며, 개인정보 처리 문구 확정 여부에 따라 7월 18일 또는 7월 22일로 예정되어 있습니다.)"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "h02_qa_completion",
+      "case_title": "QA 완료율 계산",
+      "expected": "31/42 = 약 73.8%, 잔여 11개.",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "- **작성 완료율:** 약 73.8% (총 42개 중 31개 완료)\n- **잔여 개수:** 11개",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 327,
+          "candidatesTokenCount": 39,
+          "totalTokenCount": 969,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 327
+            }
+          ],
+          "thoughtsTokenCount": 603,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "wG1gaq_uKNWY0-kP6JmjoAI",
+        "elapsed_seconds_client": 8.69
+      },
+      "text": "- **작성 완료율:** 약 73.8% (총 42개 중 31개 완료)\n- **잔여 개수:** 11개"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "h03_api_delta",
+      "case_title": "API 목표 대비 초과 시간",
+      "expected": "평균 4.8초, 목표 3초이므로 1.8초 초과.",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "백엔드 담당에 따르면, 현재 평균 4.8초로 목표(3초)보다 1.8초 느립니다.",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 322,
+          "candidatesTokenCount": 29,
+          "totalTokenCount": 911,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 322
+            }
+          ],
+          "thoughtsTokenCount": 560,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "yG1gaua_GJKB0-kPlPPbgAk",
+        "elapsed_seconds_client": 6.35
+      },
+      "text": "백엔드 담당에 따르면, 현재 평균 4.8초로 목표(3초)보다 1.8초 느립니다."
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "h04_travel_policy",
+      "case_title": "사내 출장비 규정 질문",
+      "expected": "제공 자료에 출장비 규정이 없으므로 확답 불가. 사내 규정 문서 확인 필요.",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "제공된 자료에 출장비 정산 관련 내용이 없습니다. (확인 필요)",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 328,
+          "candidatesTokenCount": 20,
+          "totalTokenCount": 873,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 328
+            }
+          ],
+          "thoughtsTokenCount": 525,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "zm1garGuL9TDvr0Ps6y42AM",
+        "elapsed_seconds_client": 7.43
+      },
+      "text": "제공된 자료에 출장비 정산 관련 내용이 없습니다. (확인 필요)"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "h05_legal_done",
+      "case_title": "법무 검토 완료 여부",
+      "expected": "완료 여부 확정 불가. 자료에는 법무 검토 중이며 금요일 전 확정이 어렵다고 되어 있음.",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "아니요, 완료되지 않았습니다. \n\n운영 담당에 따르면 현재 법무 검토 중이며, 이번 주 금요일 전에는 확정이 어렵습니다. (정확한 확정 일정: 확인 필요)",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 326,
+          "candidatesTokenCount": 46,
+          "totalTokenCount": 1202,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 326
+            }
+          ],
+          "thoughtsTokenCount": 830,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "1m1gatmQC9TDvr0Ps6y42AM",
+        "elapsed_seconds_client": 8.87
+      },
+      "text": "아니요, 완료되지 않았습니다. \n\n운영 담당에 따르면 현재 법무 검토 중이며, 이번 주 금요일 전에는 확정이 어렵습니다. (정확한 확정 일정: 확인 필요)"
+    },
+    {
+      "model": "gemini-3.1-pro-preview",
+      "case_id": "h06_download_due",
+      "case_title": "다운로드 화면 완료일 추정 금지",
+      "expected": "공통 자료만 기준으로 완료일 없음. 현재 70% 정보만 있고 완료 예정일은 확인 필요.",
+      "output": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "현재 70% 완료된 상태이며, 정확한 완료일은 **확인 필요**합니다.",
+                  "thoughtSignature": "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"
+                }
+              ],
+              "role": "model"
+            },
+            "finishReason": "STOP",
+            "index": 0
+          }
+        ],
+        "usageMetadata": {
+          "promptTokenCount": 319,
+          "candidatesTokenCount": 22,
+          "totalTokenCount": 966,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 319
+            }
+          ],
+          "thoughtsTokenCount": 625,
+          "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3.1-pro-preview",
+        "responseId": "321gatmZA-6b1e8PqpLl2AE",
+        "elapsed_seconds_client": 7.78
+      },
+      "text": "현재 70% 완료된 상태이며, 정확한 완료일은 **확인 필요**합니다."
+    }
+  ]
+}
